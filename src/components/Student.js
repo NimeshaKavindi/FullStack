@@ -6,8 +6,19 @@ const Student = () => {
 
     const [name, setName] = useState();
     const [address, setAddress] =useState();
-
-  
+    
+    const handleClick =(e) =>{
+        e.preventDefault()
+        const student = {name, address};
+        console.log(student);
+        fetch ("http://localhost:8080/student/add",{ 
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(student)
+    }).then(() =>{
+        console.log("New student added")
+    })
+    }
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div className="container-box">
@@ -37,7 +48,7 @@ const Student = () => {
             />
           </div>
           <br></br>
-          <button type="submit" className="btn btn-primary" >SUBMIT</button>
+          <button type="submit" className="btn btn-primary" onClick={handleClick}>SUBMIT</button>
         </form>
 
       </div>
