@@ -29,7 +29,7 @@ const Student = () => {
         }
       )
       },[])
-      
+
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div className="container-box">
@@ -61,9 +61,33 @@ const Student = () => {
           <br></br>
           <button type="submit" className="btn btn-primary" onClick={handleClick}>SUBMIT</button>
         </form>
+        
 
       </div>
+      <br/><br/>
+      <div className="container mt-4">
+                    <h2>Students List</h2>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {students.map((student, index) => (
+                                <tr key={index}>
+                                    <td>{student.id}</td>
+                                    <td>{student.name}</td>
+                                    <td>{student.address}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
     </div>
+     
     </div>
     
   );
