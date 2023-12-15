@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/student.css'; // Import a CSS file for custom styles
 
@@ -6,6 +6,7 @@ const Student = () => {
 
     const [name, setName] = useState();
     const [address, setAddress] =useState();
+    const [students, setStudents] =useState([]);
     
     const handleClick =(e) =>{
         e.preventDefault()
@@ -19,6 +20,16 @@ const Student = () => {
         console.log("New student added")
     })
     }
+
+    useEffect(()=>{
+        fetch("http://localhost:8080/student/getAll")
+        .then(res=>res.json())
+        .then((result)=>{
+          setStudents(result);
+        }
+      )
+      },[])
+      
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div className="container-box">
